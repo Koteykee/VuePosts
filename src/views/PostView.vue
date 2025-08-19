@@ -1,7 +1,16 @@
 <template>
-  <div>POSTVIEW</div>
+  <Suspense>
+    <Post />
+  </Suspense>
+  <Suspense>
+    <CommentsList />
+  </Suspense>
 </template>
 
-<script setup></script>
+<script setup>
+import { Suspense } from "vue";
+import Post from "@/components/Post.vue";
+import CommentsList from "@/components/CommentsList.vue";
+</script>
 
 <style scoped></style>

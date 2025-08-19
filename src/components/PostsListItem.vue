@@ -1,14 +1,15 @@
 <template>
   <div class="post" @click="goPost(post.id)">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.body }}</p>
+    <h3>{{ postTitlePrew }}</h3>
+    <p>{{ postBodyPrew }}...</p>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router";
+import { capitalize } from "@/functions/capitalize";
 
-defineProps({
+const { post } = defineProps({
   post: {
     type: Object,
     required: true,
@@ -20,6 +21,9 @@ const router = useRouter();
 function goPost(id) {
   router.push(`/posts/${id}`);
 }
+
+const postBodyPrew = capitalize(post.body.slice(0, 30));
+const postTitlePrew = capitalize(post.title);
 </script>
 
 <style scoped>
