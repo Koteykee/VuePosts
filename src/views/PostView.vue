@@ -1,10 +1,12 @@
 <template>
-  <Suspense>
-    <Post />
-  </Suspense>
-  <Suspense>
-    <CommentsList />
-  </Suspense>
+  <main>
+    <Suspense>
+      <Post />
+    </Suspense>
+    <Suspense>
+      <CommentsList />
+    </Suspense>
+  </main>
 </template>
 
 <script setup>

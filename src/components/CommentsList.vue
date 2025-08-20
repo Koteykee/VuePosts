@@ -1,5 +1,5 @@
 <template>
-  <div class="commentsWrapper">
+  <div>
     <p class="commentsCounter">Comments: {{ comments.length }}</p>
     <ul class="commentsList">
       <li v-for="comment in comments">
@@ -42,11 +42,6 @@ const comments = await getComments();
 .commentsCounter {
   text-align: end;
   margin-right: 4px;
-}
-
-.commentsWrapper {
-  width: 50%;
-  margin: 0 auto;
 }
 
 li {

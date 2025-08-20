@@ -35,7 +35,6 @@ const postBody = capitalize(post.body);
   padding: 16px;
   border: 2px solid rgb(43, 81, 153);
   margin: 30px auto;
-  width: 50%;
 }
 .postTitle {
   text-align: center;

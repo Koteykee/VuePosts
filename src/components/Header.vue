@@ -1,13 +1,16 @@
 <template>
   <nav class="nav">
     <h1 @click="goHomePage">Posts Home Page</h1>
+    <Search v-if="route.path === '/'" />
     <h2>Links</h2>
   </nav>
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import Search from "./Search.vue";
 
+const route = useRoute();
 const router = useRouter();
 function goHomePage() {
   router.push("/");
@@ -28,6 +31,7 @@ function goHomePage() {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 h1 {

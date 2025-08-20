@@ -10,3 +10,8 @@
 body {
   background-color: rgb(163, 180, 236);
 }
+
+main {
+  width: 50%;
+  margin: 0 auto;
+}

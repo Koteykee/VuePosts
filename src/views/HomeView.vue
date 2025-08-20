@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main>
     <Suspense>
       <PostsList />
     </Suspense>
@@ -8,12 +8,8 @@
 
 <script setup>
 import PostsList from "@/components/PostsList.vue";
+import Search from "@/components/Search.vue";
 import { Suspense } from "vue";
 </script>
 
-<style scoped>
-.main {
-  width: 50%;
-  margin: 0 auto;
-}
-</style>
+<style scoped></style>

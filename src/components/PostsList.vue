@@ -1,14 +1,21 @@
 <template>
-  <ul class="postList">
-    <li v-for="post in posts">
+  <p v-if="filteredPosts.length === 0">
+    No results match your query, try a different term.
+  </p>
+  <ul v-else class="postList">
+    <li v-for="post in filteredPosts" :key="post.id">
       <PostsListItem :post="post" />
     </li>
   </ul>
 </template>
 
 <script setup>
+import { usePostsStore } from "@/stores/postsStore";
 import PostsListItem from "./PostsListItem.vue";
 import axios from "axios";
+import { computed } from "vue";
+
+const postsStore = usePostsStore();
 
 const getPosts = async () => {
   try {
@@ -22,6 +29,19 @@ const getPosts = async () => {
 };
 
 const posts = await getPosts();
+
+const filteredPosts = computed(() => {
+  if (postsStore.searchQuery.trim() === "") {
+    return posts;
+  } else {
+    const query = postsStore.searchQuery.toLowerCase();
+    return posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(query) ||
+        post.body.toLowerCase().includes(query)
+    );
+  }
+});
 </script>
 
 <style scoped>
