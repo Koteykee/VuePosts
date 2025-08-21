@@ -2,7 +2,7 @@
   <nav class="nav">
     <h1 @click="goHomePage">Posts Home Page</h1>
     <Search v-if="route.path === '/'" />
-    <h2>Links</h2>
+    <h2>Random Post</h2>
   </nav>
 </template>
 

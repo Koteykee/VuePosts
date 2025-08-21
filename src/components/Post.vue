@@ -2,6 +2,10 @@
   <div class="post">
     <h3 class="postTitle">{{ postTitle }}</h3>
     <p class="postBody">{{ postBody }}.</p>
+    <div class="likeContainer">
+      <img :src="likeIcon" alt="Like icon" class="like" @click="liked" />
+      <p class="likeText">Likes: {{ likeCounter }}</p>
+    </div>
   </div>
 </template>
 
@@ -9,6 +13,7 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import { capitalize } from "@/functions/capitalize";
+import { ref } from "vue";
 
 const route = useRoute();
 
@@ -27,6 +32,22 @@ const getPost = async () => {
 const post = await getPost();
 const postTitle = capitalize(post.title);
 const postBody = capitalize(post.body);
+
+const likeIcon = ref("/assets/img/like.svg");
+const isLiked = ref(false);
+const likeCounter = ref(0);
+
+function liked() {
+  isLiked.value = !isLiked.value;
+  if (isLiked.value) {
+    likeIcon.value = "/assets/img/liked.svg";
+    likeCounter.value++;
+  } else {
+    likeIcon.value = "/assets/img/like.svg";
+    likeCounter.value--;
+  }
+  return;
+}
 </script>
 
 <style scoped>
@@ -44,5 +65,26 @@ const postBody = capitalize(post.body);
 
 .postBody {
   font-size: 22px;
+}
+
+.likeContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.like {
+  width: 36px;
+  height: auto;
+  cursor: pointer;
+}
+
+.like:hover {
+  transform: scale(1.2);
+}
+
+.likeText {
+  margin-left: 8px;
+  font-size: 20px;
 }
 </style>

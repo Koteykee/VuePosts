@@ -8,7 +8,6 @@
 
 <script setup>
 import PostsList from "@/components/PostsList.vue";
-import Search from "@/components/Search.vue";
 import { Suspense } from "vue";
 </script>
 
