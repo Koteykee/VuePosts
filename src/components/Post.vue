@@ -13,7 +13,7 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import { capitalize } from "@/functions/capitalize";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const route = useRoute();
 
@@ -33,19 +33,14 @@ const post = await getPost();
 const postTitle = capitalize(post.title);
 const postBody = capitalize(post.body);
 
-const likeIcon = ref("/assets/img/like.svg");
 const isLiked = ref(false);
-const likeCounter = ref(0);
+const likeIcon = computed(() =>
+  isLiked.value ? "/assets/img/liked.svg" : "/assets/img/like.svg"
+);
+const likeCounter = computed(() => (isLiked.value ? 1 : 0));
 
 function liked() {
   isLiked.value = !isLiked.value;
-  if (isLiked.value) {
-    likeIcon.value = "/assets/img/liked.svg";
-    likeCounter.value++;
-  } else {
-    likeIcon.value = "/assets/img/like.svg";
-    likeCounter.value--;
-  }
   return;
 }
 </script>

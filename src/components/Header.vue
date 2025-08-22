@@ -1,20 +1,19 @@
 <template>
   <nav class="nav">
-    <h1 @click="goHomePage">Posts Home Page</h1>
+    <router-link :to="`/`">
+      <h1>Posts Home Page</h1>
+    </router-link>
     <Search v-if="route.path === '/'" />
-    <h2>Random Post</h2>
+    <RandomPost />
   </nav>
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import Search from "./Search.vue";
+import RandomPost from "./RandomPost.vue";
 
 const route = useRoute();
-const router = useRouter();
-function goHomePage() {
-  router.push("/");
-}
 </script>
 
 <style scoped>
@@ -38,13 +37,5 @@ h1 {
   font-size: 24px;
   padding-left: 10px;
   cursor: pointer;
-  background: none;
-}
-
-h2 {
-  font-size: 24px;
-  padding-right: 10px;
-  cursor: pointer;
-  background: none;
 }
 </style>

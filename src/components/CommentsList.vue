@@ -1,7 +1,10 @@
 <template>
   <div>
-    <p class="commentsCounter">Comments: {{ comments.length }}</p>
-    <ul class="commentsList">
+    <div class="commentsContainer">
+      <p>Comments: {{ comments.length }}</p>
+      <img :src="icon" alt="Arrow icon" class="icon" @click="openComments" />
+    </div>
+    <ul v-show="isOpen" class="commentsList">
       <li v-for="comment in comments">
         <Comment :comment="comment" />
       </li>
@@ -12,7 +15,18 @@
 <script setup>
 import Comment from "./Comment.vue";
 import axios from "axios";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
+
+const isOpen = ref(false);
+const icon = computed(() =>
+  isOpen.value ? "/assets/img/arrow-up.svg" : "/assets/img/arrow-down.svg"
+);
+
+function openComments() {
+  isOpen.value = !isOpen.value;
+  return;
+}
 
 const route = useRoute();
 const postId = route.params.id;
@@ -39,12 +53,19 @@ const comments = await getComments();
   list-style: none;
 }
 
-.commentsCounter {
-  text-align: end;
-  margin-right: 4px;
-}
-
 li {
   width: 100%;
+}
+
+.icon {
+  width: 36px;
+  height: auto;
+  cursor: pointer;
+}
+
+.commentsContainer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 </style>
