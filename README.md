@@ -1,4 +1,4 @@
-# This simple posts app is my first Vue3 project where i learned how to:
+# This simple posts app is my first Vue3 project where I learned how to:
 
 1. Use axios to send requests to an API.
 2. Use Pinia to store and synchronize the search state (searchQuery) across components.
